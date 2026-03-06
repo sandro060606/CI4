@@ -71,6 +71,7 @@
 <body>
 <div class="wrap">
     <h1>400</h1>
+    <h1>No encontramos tu pagina, no te preocupes te ayudaremos</h1>
 
     <p>
         <?php if (ENVIRONMENT !== 'production') : ?>
