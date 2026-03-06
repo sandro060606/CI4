@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1>Estas en Diseño Grafico Digital</h1>
+    <p>Lista de Aplicaciones usadas en la Carrera:</p>
+    <hr>
+    <ul>
+        <?php foreach($aplicaciones as $app): ?>
+        <li><?= $app ?></li>
+        <?php endforeach; ?>
+    </ul>
 </body>
 </html>
