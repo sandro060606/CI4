@@ -8,8 +8,17 @@ class Home extends BaseController
     {
         return view('senati');
     }
+
+    /**
+     * Summary of dashboard
+     * @return string
+     */
     public function dashboard(): string
     {
-        return view('dashboard');
+        $data = [
+            'header' => view('Partials/header'),
+            'footer' => view('Partials/footer'),
+        ];
+        return view('dashboard', $data);
     }
 }
