@@ -1,13 +1,115 @@
 <?php
 namespace App\Controllers;
 use App\Controllers\BaseController;
+use App\Models\ClienteModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
-class Cliente extends BaseController{
-    public function index(): string {
+class Cliente extends BaseController
+{
+
+    /**
+     * Este meotod retorna la vista con los datos clientes
+     * @return string
+     */
+    public function index(): string
+    {
+        $cliente = new ClienteModel();
         $data = [
-            'header' => view('Partials/header'),
-            'footer' => view('Partials/footer'),
+
+            //$data es toda informacion que enviaremos a la vista
+            'header' => view(name: 'Partials/header'),
+            'clientes' => $cliente->findAll(),
+            'footer' => view(name: 'Partials/footer'),
         ];
-        return view("Modulos/clientes", $data);
+
+        return view("Modulos/clientes/index", $data);
+    }
+
+    /**
+     * Retorna la vista para el registro de clientes
+     * @return string
+     */
+    public function create(): string
+    {
+
+        $data = [
+            'header' => view(name: 'Partials/header'),
+            'footer' => view(name: 'Partials/footer'),
+        ];
+
+        return view('Modulos/clientes/registrar', $data);
+    }
+
+    public function buscar(int $id = null)
+    {
+        $cliente = new ClienteModel();
+        $registro = $cliente->find($id);
+
+        $data = [
+            'header' => view(name: 'Partials/header'),
+            'registro' => $registro,
+            'footer' => view(name: 'Partials/footer'),
+        ];
+
+        return view('Modulos/clientes/actualizar', $data);
+    }
+
+
+
+    /**
+     * Almacena los datos en la tabla clientes
+     * @return RedirectResponse
+     */
+
+
+    public function registrarCliente()
+    {
+        $cliente = new ClienteModel();
+
+        $apellidos = $this->request->getPost('apellidos');
+        $nombres = $this->request->getPost('nombres');
+        $dni = $this->request->getPost('dni');
+        $telefono = $this->request->getPost('telefono');
+
+        $cliente->insert([
+            'apellidos' => $apellidos,
+            'nombres' => $nombres,
+            'dni' => $dni,
+            'telefono' => $telefono
+        ]);
+
+        return redirect()->to('/clientes/index');
+    }
+
+    public function actualizar()
+    {
+        $cliente = new ClienteModel();
+
+        $id = $this->request->getPost('idcliente');
+        $apellidos = $this->request->getPost('apellidos');
+        $nombres = $this->request->getPost('nombres');
+        $dni = $this->request->getPost('dni');
+        $telefono = $this->request->getPost('telefono');
+
+        $cliente->update($id, [
+            'apellidos' => $apellidos,
+            'nombres' => $nombres,
+            'dni' => $dni,
+            'telefono' => $telefono
+        ]);
+
+        return redirect()->to('/clientes/index');
+    }
+
+    /**
+     * Summary of eliminar
+     * @param mixed $id
+     * @return RedirectResponse
+     */
+    public function eliminar($id = null)
+    {
+        $cliente = new ClienteModel();
+        $cliente->delete($id);
+        return redirect()->to('/clientes/index');
     }
 }

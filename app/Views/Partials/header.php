@@ -12,13 +12,13 @@
     <title>Proyecto de Innovacion</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url('vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= base_url('css/sb-admin-2.min.css') ?>" rel="stylesheet">
 
 </head>
 
@@ -67,7 +67,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sistema Almacen:</h6>
-                        <a class="collapse-item" href="<?= base_url('clientes') ?>">Clientes</a>
+                        <a class="collapse-item" href="<?= base_url('clientes/index') ?>">Clientes</a>
                         <a class="collapse-item" href="<?= base_url('proovedores') ?>">Proovedores</a>
                         <a class="collapse-item" href="<?= base_url('productos') ?>">Productos</a>
                     </div>

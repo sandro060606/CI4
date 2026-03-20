@@ -11,7 +11,14 @@ $routes->get('/programador', 'Carrera::showIngeneria');
 $routes->get('/marketing', 'Carrera::showDesign');
 
 //Nuevas Rutas para navegar en Dashboard
-$routes->get('/clientes', 'Cliente::index');
+$routes->get('/clientes/index', 'Cliente::index');
+$routes->get('/clientes/registrar', 'Cliente::create');
+$routes->post('/clientes/guardar', 'Cliente::registrarCliente');
+$routes->get('/clientes/eliminar/(:num)', 'Cliente::eliminar/$1');
+$routes->get('/clientes/buscar/', 'Cliente::buscar');
+$routes->get('clientes/buscar/(:num)', 'Cliente::buscar/$1');
+$routes->post('/clientes/actualizar', 'Cliente::actualizar');
+
 $routes->get('/proovedores', 'Proovedor::index');
 $routes->get('/productos', 'Producto::index');
 
