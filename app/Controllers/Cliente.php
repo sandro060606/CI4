@@ -78,7 +78,7 @@ class Cliente extends BaseController
             'telefono' => $telefono
         ]);
 
-        return redirect()->to('/clientes/index');
+        return redirect()->to('/clientes');
     }
 
     public function actualizar()
@@ -98,7 +98,7 @@ class Cliente extends BaseController
             'telefono' => $telefono
         ]);
 
-        return redirect()->to('/clientes/index');
+        return redirect()->to('/clientes');
     }
 
     /**
@@ -110,6 +110,6 @@ class Cliente extends BaseController
     {
         $cliente = new ClienteModel();
         $cliente->delete($id);
-        return redirect()->to('/clientes/index');
+        return redirect()->to('/clientes');
     }
 }

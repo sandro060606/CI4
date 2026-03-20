@@ -34,9 +34,6 @@
                         <?= $cliente['telefono'] ?>
                     </td>
                     <td>
-                        <!-- Eliminación directa -->
-                        <a href="<?= base_url('clientes/eliminar/' . $cliente['id']) ?>"
-                            class="btn btn-sm btn-secondary">Eliminar</a>
                         <!-- eliminacion previa confirmacion -->
                         <a href="#" class="btn btn-sm btn-danger btn-eliminar" data-idcliente="<?= $cliente['id'] ?>"
                             data-nombres="<?= $cliente['nombres'] ?>">

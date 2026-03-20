@@ -67,7 +67,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sistema Almacen:</h6>
-                        <a class="collapse-item" href="<?= base_url('clientes/index') ?>">Clientes</a>
+                        <a class="collapse-item" href="<?= base_url('clientes') ?>">Clientes</a>
                         <a class="collapse-item" href="<?= base_url('proovedores') ?>">Proovedores</a>
                         <a class="collapse-item" href="<?= base_url('productos') ?>">Productos</a>
                     </div>
