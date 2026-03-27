@@ -40,6 +40,9 @@ $routes->post('/productos/actualizar', 'Producto::actualizar');
 $routes->get('/vehiculos', 'Vehiculo::index');
 $routes->get('/vehiculos/listar','Vehiculo::getVehiculos');
 
+//Marcas
+$routes->get('/marcas/listar', 'Marca::getMarcas');
+
 //Rutas para Reportes
 $routes->get('/reporte_diario', 'Reporte::diario');
 $routes->get('/reporte_semanal', 'Reporte::semanal');
