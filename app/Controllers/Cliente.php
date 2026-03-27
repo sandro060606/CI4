@@ -54,8 +54,6 @@ class Cliente extends BaseController
         return view('Modulos/clientes/actualizar', $data);
     }
 
-
-
     /**
      * Almacena los datos en la tabla clientes
      * @return RedirectResponse

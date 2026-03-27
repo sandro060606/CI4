@@ -35,6 +35,10 @@ $routes->get('/productos/eliminar/(:num)', 'Producto::eliminar/$1');
 $routes->get('/productos/buscar/(:num)', 'Producto::buscar/$1');
 $routes->post('/productos/actualizar', 'Producto::actualizar');
 
+
+//Vehiculos
+$routes->get('/vehiculos', 'Vehiculo::index');
+
 //Rutas para Reportes
 $routes->get('/reporte_diario', 'Reporte::diario');
 $routes->get('/reporte_semanal', 'Reporte::semanal');
