@@ -75,6 +75,24 @@
     document.addEventListener("DOMContentLoaded", function (){
         //Referencias
         const tabla = document.getElementById('content-vehiculos')
+        const listaMarcas = document.querySelector('#marcas')
+        async function obtenerMarcas(){
+            try {
+                const response = await fetch(`<?= base_url('marcas/listar')?>`)
+                const data = await response.json()
+                if (response.status != 200) {return;}
+                if(!data) {return;}
+                data.forEach(element =>{
+                    const tagOption = document.createElement("option")
+                    tagOption.value = element.id
+                    tagOption.innerText = element.marca
+                    listaMarcas.appendChild(tagOption) 
+                })
+            } catch (error) {
+                console.error("No se pudo obtener las Marcas",error)
+            }
+        }
+        
         async function obtenerVehiculos(){
             try {
                 const response = await fetch(`<?= base_url('vehiculos/listar')?>`)
@@ -106,7 +124,9 @@
             }
         }
 
+        //Funciones AutoEjecucion
         obtenerVehiculos()
+        obtenerMarcas()
     })
  </script>
 <?= $footer ?>
