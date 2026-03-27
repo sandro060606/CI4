@@ -39,6 +39,7 @@ $routes->post('/productos/actualizar', 'Producto::actualizar');
 //Vehiculos
 $routes->get('/vehiculos', 'Vehiculo::index');
 $routes->get('/vehiculos/listar','Vehiculo::getVehiculos');
+$routes->post('/vehiculos/registrar', 'Vehiculo::registrarVehiculo');
 
 //Marcas
 $routes->get('/marcas/listar', 'Marca::getMarcas');
