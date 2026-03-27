@@ -3,7 +3,6 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\VehiculoModel;
 use CodeIgniter\HTTP\RedirectResponse;
-use PHPUnit\Framework\TestStatus\Success;
 
 class Vehiculo extends BaseController
 {

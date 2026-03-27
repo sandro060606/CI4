@@ -35,6 +35,8 @@ $routes->get('/productos/eliminar/(:num)', 'Producto::eliminar/$1');
 $routes->get('/productos/buscar/(:num)', 'Producto::buscar/$1');
 $routes->post('/productos/actualizar', 'Producto::actualizar');
 
+//TAREA 03 | Rutas para Producto X
+$routes->get('/productosX', 'ProductoX::index');
 
 //Vehiculos
 $routes->get('/vehiculos', 'Vehiculo::index');
