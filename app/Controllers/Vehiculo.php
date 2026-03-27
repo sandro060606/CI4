@@ -14,4 +14,13 @@ class Vehiculo extends BaseController
 
         return view("Modulos/vehiculos/index", $data);
     }
+
+    //El Controlador "Servira" resultados asíncronos, por lo tanto requiere:
+    //Codigo servidos               https://developer.mozilla.org/es/docs/Web/HTTP/Reference/Status
+    //Resultado en formato JSON     
+    public function getVehiculos(){
+        //Se requiere el Modelo
+        $vehiculo = new VehiculoModel();
+        return $this->response->setJSON($vehiculo->obtenerVehiculos());
+    }
 }

@@ -38,6 +38,7 @@ $routes->post('/productos/actualizar', 'Producto::actualizar');
 
 //Vehiculos
 $routes->get('/vehiculos', 'Vehiculo::index');
+$routes->get('/vehiculos/listar','Vehiculo::getVehiculos');
 
 //Rutas para Reportes
 $routes->get('/reporte_diario', 'Reporte::diario');
