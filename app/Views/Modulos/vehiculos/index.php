@@ -78,19 +78,20 @@
         const tabla = document.getElementById('content-vehiculos')
         const listaMarcas = document.querySelector('#marcas')
 
-        //Funcion Estandar
-        /* function notificar(mensaje = ''){
+
+        //Función estandar
+        function notificar(mensaje = '') {
             Swal.fire({
                 text: mensaje,
                 icon: 'info',
                 position: 'top-end',
                 timer: 2500,
-                timerProgress: true,
-                showConfirmButton: FALSE,
+                timerProgressBar: true,
+                showConfirmButton: false,
                 toast: true,
-                background: #dff9fb,
+                background: '#ffeaa7'
             })
-        } */
+        }
 
         async function registrarVehiculo() {
             try {
@@ -107,14 +108,15 @@
                     body: JSON.stringify(vehiculo)
                 })
                 const data = await response.json()
-                alert(data.message)
+                notificar(data.message)
                 //No funciono
-                if (!data.message){return;}
+                if (!data.message) { return; }
                 //Todo bien
                 console.log(data)
                 //Cerrar Modal
                 $('#modal-vehiculos').modal('hide')
                 //formulario se reinicia
+                formulario.reset()
                 //Actualizar Tabla
                 obtenerVehiculos()
             } catch (error) {
@@ -171,10 +173,10 @@
         }
 
         //Eventos
-        formulario.addEventListener("submit", function (event){
+        formulario.addEventListener("submit", function (event) {
             event.preventDefault() //STOP
 
-            if(!confirm("¿Registramos este Vehiculo?")) {return; }
+            if (!confirm("¿Registramos este Vehiculo?")) { return; }
             registrarVehiculo()
         })
 
