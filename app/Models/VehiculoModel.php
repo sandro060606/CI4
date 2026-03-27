@@ -8,12 +8,12 @@ class VehiculoModel extends Model{
     protected $table = "vehiculos";
     protected $primaryKey = "id";
     protected $returnType = "array";
-    protected $allowedFields = ["idmarca", "modelo","anio", "color", "precio"];
+    protected $allowedFields = ["idmarca", "modelo","anio", "color", "precio", "create_at", "update_at"];
 
     //Campos de Auditoria => ¿Cuando se Creó?, ¿Cuando se Modifico?
     protected $useTimestamps = true;
-    protected $createdField = "created_at"; //Campo Tabla Vehiculos
-    protected $updatedField = "updated_at"; //Campo Tabla Vehiculos
+    protected $createdField = "create_at"; //Campo Tabla Vehiculos
+    protected $updatedField = "update_at"; //Campo Tabla Vehiculos
     
     //Metodos Integrados:
     //FindAll():   Obtener los Registros

@@ -71,36 +71,82 @@
     </div>
 </div>
 <!-- Fin Zona Modal -->
- <script>
-    document.addEventListener("DOMContentLoaded", function (){
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
         //Referencias
+        const formulario = document.getElementById('formulario-vehiculos');
         const tabla = document.getElementById('content-vehiculos')
         const listaMarcas = document.querySelector('#marcas')
-        async function obtenerMarcas(){
+
+        //Funcion Estandar
+        /* function notificar(mensaje = ''){
+            Swal.fire({
+                text: mensaje,
+                icon: 'info',
+                position: 'top-end',
+                timer: 2500,
+                timerProgress: true,
+                showConfirmButton: FALSE,
+                toast: true,
+                background: #dff9fb,
+            })
+        } */
+
+        async function registrarVehiculo() {
             try {
-                const response = await fetch(`<?= base_url('marcas/listar')?>`)
+                const vehiculo = {
+                    idmarca: listaMarcas.value,
+                    modelo: document.querySelector("#modelo").value,
+                    anio: document.querySelector("#anio").value,
+                    color: document.querySelector("#color").value,
+                    precio: document.querySelector("#precio").value,
+                }
+                const response = await fetch(`<?= base_url('vehiculos/registrar') ?>`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'aplication/json' },
+                    body: JSON.stringify(vehiculo)
+                })
                 const data = await response.json()
-                if (response.status != 200) {return;}
-                if(!data) {return;}
-                data.forEach(element =>{
+                alert(data.message)
+                //No funciono
+                if (!data.message){return;}
+                //Todo bien
+                console.log(data)
+                //Cerrar Modal
+                $('#modal-vehiculos').modal('hide')
+                //formulario se reinicia
+                //Actualizar Tabla
+                obtenerVehiculos()
+            } catch (error) {
+                console.error("No se logro Registrar;", error)
+            }
+        }
+
+        async function obtenerMarcas() {
+            try {
+                const response = await fetch(`<?= base_url('marcas/listar') ?>`)
+                const data = await response.json()
+                if (response.status != 200) { return; }
+                if (!data) { return; }
+                data.forEach(element => {
                     const tagOption = document.createElement("option")
                     tagOption.value = element.id
                     tagOption.innerText = element.marca
-                    listaMarcas.appendChild(tagOption) 
+                    listaMarcas.appendChild(tagOption)
                 })
             } catch (error) {
-                console.error("No se pudo obtener las Marcas",error)
+                console.error("No se pudo obtener las Marcas", error)
             }
         }
-        
-        async function obtenerVehiculos(){
+
+        async function obtenerVehiculos() {
             try {
-                const response = await fetch(`<?= base_url('vehiculos/listar')?>`)
+                const response = await fetch(`<?= base_url('vehiculos/listar') ?>`)
                 const data = await response.json()
                 //si El Servidor no respondio Correctamente
-                if (response.status != 200) {return;}
+                if (response.status != 200) { return; }
                 //Si no encontramos datos
-                if (!data){ return;}
+                if (!data) { return; }
                 tabla.innerHTML = ``
                 //Ok Proceder
                 data.forEach(element => {
@@ -124,9 +170,17 @@
             }
         }
 
+        //Eventos
+        formulario.addEventListener("submit", function (event){
+            event.preventDefault() //STOP
+
+            if(!confirm("¿Registramos este Vehiculo?")) {return; }
+            registrarVehiculo()
+        })
+
         //Funciones AutoEjecucion
         obtenerVehiculos()
         obtenerMarcas()
     })
- </script>
+</script>
 <?= $footer ?>
