@@ -9,7 +9,9 @@ class MasterSeeder extends Seeder
     public function run()
     {
         $this->call('ClientesSeeder');
-        $this->call('ProovedoresSeeder');  // con doble o, igual que el archivo
+        $this->call('ProovedoresSeeder');
         $this->call('ProductosSeeder');
+        $this->call('MarcasSeeder');
+        $this->call('VehiculosSeeder');
     }
 }
