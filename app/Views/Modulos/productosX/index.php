@@ -30,27 +30,29 @@
                 <h5 class="modal-title" id="staticBackdropLabel">Complete el Formulario:</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="tipo">Tipo</label>
-                    <input type="text" class="form-control" id="tipo" required>
+            <form action="" id="formulario-productos" autocomplete="off">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="tipo">Tipo</label>
+                        <input type="text" class="form-control" id="tipo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion</label>
+                        <input type="text" class="form-control" id="descripcion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input type="text" class="form-control" id="precio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input type="text" class="form-control" id="stock" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="descripcion">Descripcion</label>
-                    <input type="text" class="form-control" id="descripcion" required>
-                </div>
-                <div class="form-group">
-                    <label for="precio">Precio</label>
-                    <input type="text" class="form-control" id="precio" required>
-                </div>
-                <div class="form-group">
-                    <label for="stock">Stock</label>
-                    <input type="text" class="form-control" id="stock" required>
-                </div>
-            </div>
+            </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save Changes</button>
+                <button type="submit" form="formulario-productos" class="btn btn-primary">Save Changes</button>
             </div>
         </div>
     </div>
@@ -59,6 +61,51 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const tabla = document.querySelector('#contenedor-productosx')
+        const formulario = document.querySelector('#formulario-productos');
+
+        //Función estandar
+        function notificar(mensaje = '') {
+            Swal.fire({
+                text: mensaje,
+                icon: 'info',
+                position: 'top-end',
+                timer: 2500,
+                timerProgressBar: true,
+                showConfirmButton: false,
+                toast: true,
+                background: '#ffeaa7'
+            })
+        }
+
+        async function registrarProducto() {
+            try {
+                const productox = {
+                    tipo: document.querySelector("#tipo").value,
+                    descripcion: document.querySelector("#descripcion").value,
+                    precio: document.querySelector("#precio").value,
+                    stock: document.querySelector("#stock").value,
+                }
+                const response = await fetch(`<?= base_url('productosX/registrar') ?>`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(productox)
+                })
+                const data = await response.json()
+                notificar(data.message)
+                //No funciono
+                if (!data.message) { return; }
+                //Todo bien
+                console.log(data)
+                //Cerrar Modal
+                $('#modal-productosx').modal('hide');
+                //formulario se reinicia
+                formulario.reset()
+                //Actualizar Tabla
+                obtenerProductosX()
+            } catch (error) {
+                console.error("No se logro Registrar;", error)
+            }
+        }
 
         async function obtenerProductosX() {
             try {
@@ -82,13 +129,19 @@
                             <a href='#' class='btn btn-sm btn-info '> Editar </a>
                             <a href='#' class='btn btn-sm btn-danger '> Eliminar </a>
                         </td>
-                    <tr>
+                    </tr>
                     `
                 });
             } catch (error) {
                 console.log("Error al Obtener los Datos", error)
             }
         }
+
+        formulario.addEventListener("submit", function (event) {
+            event.preventDefault() //STOP
+            if (!confirm("¿Registramos este Vehiculo?")) { return; }
+            registrarProducto()
+        })
 
         //Funciones AutoEjecucion
         obtenerProductosX()
