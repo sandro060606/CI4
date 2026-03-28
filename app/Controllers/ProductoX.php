@@ -22,4 +22,21 @@ class ProductoX extends BaseController{
         $productosx = new ProductoModel();
         return $this->response->setJSON($productosx->findAll());
     }
+    public function registrarProducto(){
+        $productosx = new ProductoModel();
+        //Todos los campos requeridos, deberan ser enviados en un JSON
+        $data = $this->request->getJSON();
+
+        if($productosx->insert($data)){
+            return $this->response->setJSON([
+                "success" => true,
+                "message" => "Vehiculo Registrado Correcatemnte"
+            ]);
+        }
+
+        return $this->response->setJSON([
+            "succes" => false,
+            "message" => "Error al registrar el vehiculo"
+        ]);
+    }
 }
