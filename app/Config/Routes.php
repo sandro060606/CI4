@@ -37,6 +37,7 @@ $routes->post('/productos/actualizar', 'Producto::actualizar');
 
 //TAREA 03 | Rutas para Producto X
 $routes->get('/productosX', 'ProductoX::index');
+$routes->get('/productosX/listar','ProductoX::getProductosX');
 
 //Vehiculos
 $routes->get('/vehiculos', 'Vehiculo::index');

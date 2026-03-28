@@ -33,6 +33,14 @@ class CrearTablaProductos extends Migration
             "stock" => [
                 "type" => "SMALLINT",
                 "null" => false
+            ],
+            "create_at" => [
+                "type" => "DATETIME",
+                "null" => true
+            ],
+            "update_at" => [
+                "type" => "DATETIME",
+                "null" => true
             ]
         ]);
 

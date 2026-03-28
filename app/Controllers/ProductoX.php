@@ -12,4 +12,14 @@ class ProductoX extends BaseController{
         ];
         return view("Modulos/productosX/index.php", $data);
     }
+    /* Funciones Asincronas */
+
+    /**
+     * Summary of getProductosX
+     * @return \CodeIgniter\HTTP\ResponseInterface
+     */
+    public function getProductosX(){
+        $productosx = new ProductoModel();
+        return $this->response->setJSON($productosx->findAll());
+    }
 }
