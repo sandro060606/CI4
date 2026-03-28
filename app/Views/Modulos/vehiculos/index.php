@@ -78,7 +78,6 @@
         const tabla = document.getElementById('content-vehiculos')
         const listaMarcas = document.querySelector('#marcas')
 
-
         //Función estandar
         function notificar(mensaje = '') {
             Swal.fire({

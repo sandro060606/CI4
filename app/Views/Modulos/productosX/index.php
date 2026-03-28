@@ -55,4 +55,43 @@
         </div>
     </div>
 </div>
+<!-- Script Para Insertar los Resultados -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabla = document.querySelector('#contenedor-productosx')
+
+        async function obtenerProductosX() {
+            try {
+                const response = await fetch(`<?= base_url('/productosX/listar') ?>`)
+                const data = await response.json()
+                //si El Servidor no respondio Correctamente
+                if (response.status != 200) { return; }
+                //Si no encontramos datos
+                if (!data) { return; }
+                tabla.innerHTML = ``
+                //Ok Proceder
+                data.forEach(element => {
+                    tabla.innerHTML += `
+                    <tr>
+                        <td>${element.id}</td>
+                        <td>${element.tipo}</td>
+                        <td>${element.descripcion}</td>
+                        <td>${element.precio}</td>
+                        <td>${element.stock}</td>
+                        <td>
+                            <a href='#' class='btn btn-sm btn-info '> Editar </a>
+                            <a href='#' class='btn btn-sm btn-danger '> Eliminar </a>
+                        </td>
+                    <tr>
+                    `
+                });
+            } catch (error) {
+                console.log("Error al Obtener los Datos", error)
+            }
+        }
+
+        //Funciones AutoEjecucion
+        obtenerProductosX()
+    })
+</script>
 <?= $footer ?>
