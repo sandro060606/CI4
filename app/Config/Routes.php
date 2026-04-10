@@ -49,3 +49,6 @@ $routes->get('/reporte_diario', 'Reporte::diario');
 $routes->get('/reporte_semanal', 'Reporte::semanal');
 $routes->get('/reporte_mensual', 'Reporte::mensual');
 $routes->get('/reporte_personalizado', 'Reporte::personalizado');
+
+//Rutas para Reportes (PDF)
+$routes->get('/reportes/vehiculos', 'ReporteController::generarReporteVehiculos');
