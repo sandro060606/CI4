@@ -52,3 +52,6 @@ $routes->get('/reporte_personalizado', 'Reporte::personalizado');
 
 //Rutas para Reportes (PDF)
 $routes->get('/reportes/vehiculos', 'ReporteController::generarReporteVehiculos');
+
+//Rutas para Reportes (PDF) / Prueba
+$routes->get('/reportes/prueba', 'ReporteController::generarReportePrueba');
