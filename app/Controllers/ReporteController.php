@@ -58,10 +58,11 @@ class ReporteController extends BaseController
             ["apellidos" => "Mendoza", "nombres" => "Silvia", "telefono" => "956111777", "genero" => "F", "sueldo" => 5000],
         ];
         $estilos = view('Reports/estilos');
-
+        $logo_senati = base_url('/images/senatilogo.jpg'); //Public
         $html = view('Reports/prueba', 
             ['personas' => $listapersonas, 
-            'estilos' => $estilos]
+            'estilos' => $estilos,
+            'logo' => $logo_senati]
         );
 
         try {

@@ -16,6 +16,15 @@ class Vehiculo extends BaseController
         return view("Modulos/vehiculos/index", $data);
     }
 
+    public function mostrarUIReportes(){
+        $data = [
+            'header' => view(name: 'Partials/header'),
+            'footer' => view(name: 'Partials/footer'),
+        ];
+
+        return view("Modulos/vehiculos/config-report-vehiculos", $data);
+    }
+
     //El Controlador "Servira" resultados asíncronos, por lo tanto requiere:
     //Codigo servidos               https://developer.mozilla.org/es/docs/Web/HTTP/Reference/Status
     //Resultado en formato JSON    

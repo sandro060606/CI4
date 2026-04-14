@@ -8,6 +8,10 @@
     </page_footer>
 
     <!-- Contenido -->
+    <!-- Imagen de la Empresa -->
+    <img src="<?= $logo ?>" alt="Logo">
+
+    <!-- Tabla con Datos -->
     <table class="table">
         <thead>
             <tr>

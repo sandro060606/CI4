@@ -40,6 +40,7 @@ $routes->post('/productos/actualizar', 'Producto::actualizar');
 $routes->get('/vehiculos', 'Vehiculo::index');
 $routes->get('/vehiculos/listar','Vehiculo::getVehiculos');
 $routes->post('/vehiculos/registrar', 'Vehiculo::registrarVehiculo');
+$routes->get('/vehiculos/reporte', 'Vehiculo::mostrarUIReportes');
 
 //Marcas
 $routes->get('/marcas/listar', 'Marca::getMarcas');

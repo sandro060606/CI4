@@ -6,6 +6,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-vehiculos">
             Nuevo Vehiculo
         </button>
+        <a href="<?= base_url('vehiculos/reporte') ?>" class="btn btn-info">Reportes</a>
         <!-- Tabla -->
         <table class="table table-sm mt-3">
             <thead>
